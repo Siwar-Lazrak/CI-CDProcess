@@ -10,6 +10,8 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	</http:listener-config>
 	<flow name="ci-cdappFlow" doc:id="c3b6f973-a56f-43a1-866c-7ca09a7ff867" >
 		<http:listener doc:name="Listener" doc:id="ee7c3055-0440-4ad3-9c6c-a00a2d7a9823" config-ref="HTTP_Listener_config" path="/get"/>
+		<logger level="INFO" doc:name="Logger" doc:id="02002bbe-482d-4d7a-9888-5938bb628286" message='#["Input payload" ++ payload]'/>
+		<set-variable value="#[payload]" doc:name="Set Variable" doc:id="e5567cb7-cb77-4f31-a851-dbc3f7c4bed6" variableName="varPayload"/>
 		<ee:transform doc:name="Transform Message" doc:id="97673613-efcc-4a5f-ad80-ad9f4d916879" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
